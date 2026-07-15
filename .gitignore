@@ -1,0 +1,23 @@
+# NetBeans generated files
+/build/
+/dist/
+/nbbuild/
+/nbdist/
+/.nb-gradle/
+
+# GlassFish generated files
+/.netbeans/
+/private/
+
+# IDE settings
+*.log
+
+# Compiled files
+*.class
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# User uploaded images
+/BarangBaekUploads/
