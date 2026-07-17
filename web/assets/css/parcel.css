@@ -1,0 +1,466 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #f4f7fb;
+    color: #172235;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.parcel-page {
+    width: calc(100% - 32px);
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 34px 0 70px;
+}
+
+.parcel-heading {
+    padding: 30px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    border: 1px solid #e3eaf3;
+    border-radius: 22px;
+    box-shadow: 0 12px 30px rgba(31, 56, 88, 0.07);
+}
+
+.parcel-heading > div {
+    margin-right: 20px;
+}
+
+.parcel-eyebrow {
+    display: block;
+    margin-bottom: 7px;
+    color: #1264d7;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.parcel-heading h1 {
+    font-size: 34px;
+}
+
+.parcel-heading p {
+    margin-top: 8px;
+    color: #6b7d93;
+    line-height: 1.55;
+}
+
+.parcel-heading > a,
+.parcel-empty a,
+.parcel-card__actions a,
+.parcel-update-form__actions a {
+    color: #1264d7;
+    text-decoration: none;
+    font-weight: 800;
+}
+
+.parcel-heading > a {
+    white-space: nowrap;
+}
+
+.parcel-heading > a i {
+    margin-right: 7px;
+}
+
+.parcel-alert {
+    margin-top: 20px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.parcel-alert i {
+    margin-right: 9px;
+}
+
+.parcel-alert--success {
+    background-color: #dff5e7;
+    color: #17633a;
+}
+
+.parcel-alert--error {
+    background-color: #ffe4e6;
+    color: #9f2630;
+}
+
+.parcel-section {
+    margin-top: 34px;
+}
+
+.parcel-section__heading {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.parcel-section__heading h2 {
+    font-size: 27px;
+}
+
+.parcel-section__heading p {
+    margin-top: 5px;
+    color: #6b7d93;
+}
+
+.parcel-count {
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    background-color: #1264d7;
+    color: #ffffff;
+    font-weight: 800;
+}
+
+.parcel-card {
+    margin-bottom: 18px;
+    overflow: hidden;
+    background-color: #ffffff;
+    border: 1px solid #e3eaf3;
+    border-radius: 20px;
+    box-shadow: 0 10px 28px rgba(31, 56, 88, 0.07);
+}
+
+.parcel-card--seller {
+    border-left: 5px solid #1264d7;
+}
+
+.parcel-card__top {
+    padding: 20px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #edf1f6;
+}
+
+.parcel-card__top > div {
+    margin-right: 16px;
+}
+
+.parcel-card__top span:first-child {
+    color: #6b7d93;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.parcel-card__top h3 {
+    margin-top: 4px;
+    font-size: 20px;
+}
+
+.parcel-status {
+    padding: 7px 11px;
+    border-radius: 20px;
+    background-color: #eaf2fd;
+    color: #0e5fc8;
+    font-size: 12px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.parcel-summary {
+    padding: 19px 22px;
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #edf1f6;
+}
+
+.parcel-summary > div {
+    width: 25%;
+    padding-right: 20px;
+}
+
+.parcel-summary span,
+.parcel-delivery-info span {
+    display: block;
+    margin-bottom: 5px;
+    color: #6b7d93;
+    font-size: 12px;
+}
+
+.parcel-summary strong,
+.parcel-delivery-info strong {
+    display: block;
+    color: #26374d;
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+.parcel-delivery-info {
+    padding: 16px 22px;
+    background-color: #f8faff;
+    border-bottom: 1px solid #edf1f6;
+}
+
+.parcel-timeline {
+    padding: 24px 22px 18px;
+    display: flex;
+}
+
+.parcel-step {
+    position: relative;
+    flex: 1;
+    padding-top: 27px;
+    color: #8a99aa;
+    text-align: center;
+    font-size: 11px;
+}
+
+.parcel-step::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #dce3ec;
+}
+
+.parcel-step:first-child::before {
+    left: 50%;
+    width: 50%;
+}
+
+.parcel-step:last-child::before {
+    width: 50%;
+}
+
+.parcel-step > span {
+    position: absolute;
+    top: 1px;
+    left: 50%;
+    width: 17px;
+    height: 17px;
+    margin-left: -8px;
+    border: 3px solid #dce3ec;
+    border-radius: 50%;
+    background-color: #ffffff;
+    z-index: 2;
+}
+
+.parcel-step.completed,
+.parcel-step.active {
+    color: #1264d7;
+}
+
+.parcel-step.completed::before,
+.parcel-step.active::before {
+    background-color: #1264d7;
+}
+
+.parcel-step.completed > span,
+.parcel-step.active > span {
+    border-color: #1264d7;
+}
+
+.parcel-step.completed > span {
+    background-color: #1264d7;
+}
+
+.parcel-step.active > span {
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(18, 100, 215, 0.14);
+}
+
+.parcel-card__actions {
+    padding: 0 22px 20px;
+}
+
+.parcel-update-form {
+    padding: 20px 22px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.parcel-field {
+    width: calc(50% - 10px);
+    margin-right: 20px;
+}
+
+.parcel-field:nth-child(3),
+.parcel-field:last-of-type {
+    margin-right: 0;
+}
+
+.parcel-field label {
+    display: block;
+    margin-bottom: 7px;
+    color: #455a73;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.parcel-field input,
+.parcel-field select {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid #cfd9e6;
+    border-radius: 11px;
+    background-color: #ffffff;
+    color: #172235;
+    font-family: inherit;
+}
+
+.parcel-field input:focus,
+.parcel-field select:focus {
+    outline: none;
+    border-color: #1264d7;
+}
+
+.parcel-update-form__actions {
+    width: 100%;
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.parcel-update-form__actions button {
+    min-height: 43px;
+    padding: 0 16px;
+    border: 0;
+    border-radius: 11px;
+    background-color: #1264d7;
+    color: #ffffff;
+    font-family: inherit;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.parcel-update-form__actions button:hover {
+    background-color: #0b50b5;
+}
+
+.parcel-update-form__actions button i {
+    margin-right: 7px;
+}
+
+.parcel-empty {
+    min-height: 240px;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border: 2px dashed #cfd9e6;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.parcel-empty i {
+    margin-bottom: 14px;
+    color: #8ca4c1;
+    font-size: 42px;
+}
+
+.parcel-empty h3 {
+    font-size: 20px;
+}
+
+.parcel-empty p {
+    margin: 7px 0 14px;
+    color: #6b7d93;
+}
+
+@media screen and (max-width: 900px) {
+    .parcel-summary > div {
+        width: 50%;
+        margin-bottom: 14px;
+    }
+
+    .parcel-summary > div:nth-last-child(-n+2) {
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .parcel-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .parcel-heading > div {
+        margin-right: 0;
+        margin-bottom: 16px;
+    }
+
+    .parcel-timeline {
+        overflow-x: auto;
+    }
+
+    .parcel-step {
+        min-width: 120px;
+    }
+
+    .parcel-field {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 14px;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .parcel-page {
+        width: calc(100% - 20px);
+        padding-top: 20px;
+    }
+
+    .parcel-heading {
+        padding: 23px 20px;
+    }
+
+    .parcel-heading h1 {
+        font-size: 28px;
+    }
+
+    .parcel-card__top {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .parcel-status {
+        margin-top: 12px;
+    }
+
+    .parcel-summary > div {
+        width: 100%;
+        margin-bottom: 14px;
+        padding-right: 0;
+    }
+
+    .parcel-summary > div:nth-last-child(-n+2) {
+        margin-bottom: 14px;
+    }
+
+    .parcel-summary > div:last-child {
+        margin-bottom: 0;
+    }
+
+    .parcel-update-form__actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .parcel-update-form__actions a {
+        margin-bottom: 12px;
+        text-align: center;
+    }
+}

@@ -1,0 +1,463 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #f4f7fb;
+    color: #172235;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.inventory-page {
+    width: calc(100% - 32px);
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 34px 0 70px;
+}
+
+.inventory-header {
+    margin-bottom: 24px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.inventory-header > div {
+    margin-right: 24px;
+}
+
+.inventory-eyebrow {
+    display: block;
+    margin-bottom: 7px;
+    color: #1264d7;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+.inventory-header h1 {
+    margin: 0;
+    font-size: 39px;
+}
+
+.inventory-header p {
+    margin: 8px 0 0;
+    color: #6b7d93;
+}
+
+.inventory-add-button {
+    min-height: 46px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: #1264d7;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.inventory-add-button i {
+    margin-right: 8px;
+}
+
+.inventory-alert {
+    margin-bottom: 18px;
+    padding: 13px 15px;
+    border-radius: 11px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.inventory-alert--success {
+    border: 1px solid #abd8b9;
+    background: #ddf4e4;
+    color: #17612f;
+}
+
+.inventory-alert--info {
+    border: 1px solid #b7d5f2;
+    background: #e7f2fd;
+    color: #245a86;
+}
+
+.inventory-alert--error {
+    border: 1px solid #efb7bd;
+    background: #ffe7e9;
+    color: #9f2630;
+}
+
+.inventory-stats {
+    margin: 0 -7px 25px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.inventory-stat {
+    min-width: 150px;
+    margin: 7px;
+    padding: 16px 17px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    border: 1px solid #dde6f0;
+    border-radius: 14px;
+    background: #ffffff;
+    color: #526a83;
+    text-decoration: none;
+}
+
+.inventory-stat span {
+    margin-right: 12px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.inventory-stat strong {
+    color: #172235;
+    font-size: 21px;
+}
+
+.inventory-stat--active {
+    border-color: #1264d7;
+    background: #edf5ff;
+}
+
+.inventory-stat--active span,
+.inventory-stat--active strong {
+    color: #0d5bc5;
+}
+
+.inventory-list {
+    display: block;
+}
+
+.inventory-item-card {
+    margin-bottom: 18px;
+    display: flex;
+    overflow: hidden;
+    border: 1px solid #e0e8f1;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(31, 56, 88, 0.06);
+}
+
+.inventory-photo-wrap {
+    position: relative;
+    width: 230px;
+    min-height: 230px;
+    flex-shrink: 0;
+    background: #edf2f7;
+}
+
+.inventory-photo-wrap img {
+    width: 100%;
+    height: 100%;
+    min-height: 230px;
+    display: block;
+    object-fit: cover;
+}
+
+.inventory-status {
+    position: absolute;
+    top: 13px;
+    left: 13px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.inventory-status--available {
+    background: #d9f2df;
+    color: #17612f;
+}
+
+.inventory-status--sold {
+    background: #ffe1e4;
+    color: #992934;
+}
+
+.inventory-status--unavailable {
+    background: #e8edf3;
+    color: #51657a;
+}
+
+.inventory-item-main {
+    min-width: 0;
+    padding: 23px;
+    flex: 1;
+}
+
+.inventory-item-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.inventory-item-heading > div {
+    margin-right: 20px;
+}
+
+.inventory-category {
+    display: block;
+    margin-bottom: 5px;
+    color: #1264d7;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.inventory-item-heading h2 {
+    margin: 0;
+    font-size: 23px;
+}
+
+.inventory-price {
+    color: #0e5fc8;
+    font-size: 22px;
+    white-space: nowrap;
+}
+
+.inventory-meta {
+    margin: 15px -8px 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.inventory-meta span {
+    margin: 4px 8px;
+    color: #657a91;
+    font-size: 13px;
+}
+
+.inventory-meta i {
+    margin-right: 5px;
+    color: #8aa0b8;
+}
+
+.inventory-description {
+    max-width: 780px;
+    margin: 15px 0 0;
+    color: #51657a;
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-line;
+}
+
+.inventory-actions {
+    margin: 19px -5px -5px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.inventory-actions form {
+    margin: 5px;
+}
+
+.inventory-action {
+    min-height: 39px;
+    margin: 5px;
+    padding: 0 13px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.inventory-actions form .inventory-action {
+    margin: 0;
+}
+
+.inventory-action--outline {
+    border: 1px solid #cbd8e6;
+    background: #ffffff;
+    color: #31506f;
+}
+
+.inventory-action--edit {
+    background: #e8f2ff;
+    color: #0d5bc5;
+}
+
+.inventory-action--warning {
+    background: #fff0cf;
+    color: #835d00;
+}
+
+.inventory-action--success {
+    background: #dff3e5;
+    color: #17612f;
+}
+
+.inventory-action--sold {
+    background: #eee8fb;
+    color: #5d3e9d;
+}
+
+.inventory-action--delete {
+    background: #ffe4e6;
+    color: #a12834;
+}
+
+.inventory-empty {
+    min-height: 330px;
+    padding: 45px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ccd8e5;
+    border-radius: 18px;
+    background: #ffffff;
+    text-align: center;
+}
+
+.inventory-empty i {
+    margin-bottom: 15px;
+    color: #8da3bb;
+    font-size: 46px;
+}
+
+.inventory-empty h2 {
+    margin: 0;
+}
+
+.inventory-empty p {
+    margin: 8px 0 18px;
+    color: #6b7d93;
+}
+
+.inventory-empty a {
+    min-height: 43px;
+    padding: 0 17px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 11px;
+    background: #1264d7;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 800;
+}
+
+@media screen and (max-width: 800px) {
+    .inventory-item-card {
+        flex-direction: column;
+    }
+
+    .inventory-photo-wrap {
+        width: 100%;
+        height: 320px;
+        min-height: 0;
+    }
+
+    .inventory-photo-wrap img {
+        height: 320px;
+        min-height: 0;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .inventory-page {
+        width: calc(100% - 20px);
+        padding-top: 22px;
+    }
+
+    .inventory-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .inventory-header > div {
+        margin-right: 0;
+        margin-bottom: 16px;
+    }
+
+    .inventory-header h1 {
+        font-size: 31px;
+    }
+
+    .inventory-add-button {
+        width: 100%;
+    }
+
+    .inventory-stat {
+        min-width: calc(50% - 14px);
+    }
+
+    .inventory-photo-wrap,
+    .inventory-photo-wrap img {
+        height: 245px;
+    }
+
+    .inventory-item-main {
+        padding: 19px;
+    }
+
+    .inventory-item-heading {
+        display: block;
+    }
+
+    .inventory-item-heading > div {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .inventory-action,
+    .inventory-actions form {
+        width: calc(50% - 10px);
+    }
+
+    .inventory-actions form .inventory-action {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   CONSISTENT INVENTORY CARD HEIGHTS
+   ========================================================= */
+@media screen and (min-width: 801px) {
+    .inventory-item-card {
+        height: 300px;
+    }
+
+    .inventory-photo-wrap {
+        height: 300px;
+        min-height: 300px;
+    }
+
+    .inventory-photo-wrap img {
+        height: 300px;
+        min-height: 300px;
+        object-fit: cover;
+    }
+
+    .inventory-item-main {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .inventory-description {
+        max-height: 46px;
+        overflow: hidden;
+    }
+
+    .inventory-actions {
+        margin-top: auto;
+    }
+}

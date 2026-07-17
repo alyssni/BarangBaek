@@ -1,0 +1,161 @@
+<%@page import="java.util.List"%>
+<%@page import="com.barangbaek.bean.category"%>
+<%@page import="com.barangbaek.bean.user"%>
+<%
+    List<category> userNavCategories = (List<category>) request.getAttribute("categories");
+    String userKeyword = (String) request.getAttribute("keyword"); // For search keyword
+    Integer userSelectedCategory = (Integer) request.getAttribute("selectedCategoryID");
+
+    if (userKeyword == null) {
+        userKeyword = "";
+    }
+
+    user currentNavUser = (user) session.getAttribute("user");
+    String navUsername = (String) session.getAttribute("username");
+    String navPhoto = "default-user.png";
+
+    if (currentNavUser != null) {
+        if (currentNavUser.getUsername() != null) {
+            navUsername = currentNavUser.getUsername();
+        }
+        if (currentNavUser.getUserPhoto() != null && !currentNavUser.getUserPhoto().trim().isEmpty()) {
+            navPhoto = currentNavUser.getUserPhoto();
+        }
+    }
+
+    if (navUsername == null || navUsername.trim().isEmpty()) {
+        navUsername = "Profile";
+    }
+
+    Integer navCartCountValue = (Integer) session.getAttribute("cartCount");
+    int navCartCount = navCartCountValue != null ? navCartCountValue : 0;
+    
+    Integer navWishlistCountValue = (Integer) session.getAttribute("wishlistCount");
+    int navWishlistCount = navWishlistCountValue != null ? navWishlistCountValue : 0;
+%>
+
+<nav class="market-navbar" aria-label="User navigation">
+    <div class="market-navbar__inner">
+        
+        <!-- Logo redirecting to the user dashboard -->
+        <a class="market-brand" href="${pageContext.request.contextPath}/item?action=dashboard">
+            <img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="BarangBaek logo">
+        </a>
+
+        <form class="market-search" action="${pageContext.request.contextPath}/item" method="get">
+            <input type="hidden" name="action" value="dashboard">
+
+            <!-- Category drop down -->
+            <label class="sr-only" for="userCategory">Category</label>
+            <select id="userCategory" name="categoryID">
+                <option value="">All categories</option>
+                    <% if (userNavCategories != null) {
+                        for (category c : userNavCategories) { %>
+                            <option value="<%= c.getCategoryID() %>"
+                            <%= userSelectedCategory != null && userSelectedCategory == c.getCategoryID() ? "selected" : "" %>>
+                            <%= c.getCategoryName() %>
+                            </option>
+                    <% }
+                        } %>
+            </select>
+
+            <!-- Search bar -->
+            <label class="sr-only" for="userSearch">Search items</label>
+            <div class="market-search__input-wrap">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                <input id="userSearch" type="search" name="keyword" value="<%= userKeyword %>" placeholder="Search items">
+            </div>
+
+            <!-- Search button-->
+            <button type="submit" class="market-search__button"> Search </button>
+        </form>
+
+        <div class="market-user-actions">
+            
+            <!-- Profile button -->
+            <a class="market-profile-button" href="${pageContext.request.contextPath}/profile?action=view" aria-label="Open profile">
+                <img src="${pageContext.request.contextPath}/assets/img/userphoto/<%= navPhoto %>" alt="Profile photo" onerror="this.src='${pageContext.request.contextPath}/assets/img/userphoto/default-user.png'">
+                <span><%= navUsername %></span>
+            </a>
+
+            <!-- Wishlist button -->
+            <a class="market-icon-button" href="${pageContext.request.contextPath}/wishlist?action=view" aria-label="Open wishlist" title="Open wishlist">
+                <i class="fa-solid fa-heart" aria-hidden="true"></i>
+                <span class="cart-count wishlist-nav-count"><%= navWishlistCount %></span>
+            </a>
+
+            <!-- Cart button -->
+            <a class="market-icon-button" href="${pageContext.request.contextPath}/cart?action=view" aria-label="Open cart" title="Open cart">
+                <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+                <span class="cart-count"><%= navCartCount %></span>
+            </a>
+
+            <!-- Side bar menu button -->
+            <button type="button" class="market-icon-button" aria-label="Open menu" aria-controls="userDrawer" aria-expanded="false" onclick="showSidebar()">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+
+<div class="drawer-overlay" id="drawerOverlay" onclick="hideSidebar()"></div>
+
+<aside class="user-drawer" id="userDrawer" aria-hidden="true">
+    <div class="user-drawer__header">
+        
+        <!-- Account username -->
+        <div>
+            <span class="user-drawer__eyebrow">Account menu</span>
+            <strong><%= navUsername %></strong>
+        </div>
+        
+        <!-- Close side bar button -->
+        <button type="button" onclick="hideSidebar()" aria-label="Close menu">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+    </div>
+
+    <nav class="user-drawer__links" aria-label="Account features">
+        
+        <!-- Side bar option to 
+            add item, 
+            view inventory, 
+            view wishlist, 
+            view cart, 
+            view purchases, 
+            view orders,  
+            track parcel 
+            and view profile -->
+        <a href="${pageContext.request.contextPath}/item?action=add">
+            <i class="fa-solid fa-circle-plus"></i> Sell an Item
+        </a>
+        <a href="${pageContext.request.contextPath}/item?action=mylistings">
+            <i class="fa-solid fa-boxes-stacked"></i> My Inventory
+        </a>
+        <a href="${pageContext.request.contextPath}/wishlist?action=view">
+            <i class="fa-solid fa-heart"></i> My Wishlist
+        </a>
+        <a href="${pageContext.request.contextPath}/cart?action=view">
+            <i class="fa-solid fa-cart-shopping"></i> My Cart
+        </a>
+        <a href="${pageContext.request.contextPath}/order?action=myorders">
+            <i class="fa-solid fa-bag-shopping"></i> My Purchases
+        </a>
+        <a href="${pageContext.request.contextPath}/order?action=sellerOrders">
+            <i class="fa-solid fa-receipt"></i> Sales Orders
+        </a>
+        <a href="${pageContext.request.contextPath}/parcel">
+            <i class="fa-solid fa-truck-fast"></i> Track Parcel
+        </a>
+        <a href="${pageContext.request.contextPath}/profile?action=view">
+            <i class="fa-solid fa-user"></i> My Profile
+        </a>
+    </nav>
+
+    <!-- Logout button -->
+    <a class="user-drawer__logout" href="${pageContext.request.contextPath}/auth?action=logout">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+    </a>
+</aside>
+

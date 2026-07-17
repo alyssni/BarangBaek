@@ -1,0 +1,56 @@
+<%@page import="java.util.List"%>
+<%@page import="com.barangbaek.bean.category"%>
+<%
+    List<category> guestNavCategories = (List<category>) request.getAttribute("categories");
+    String guestKeyword = (String) request.getAttribute("keyword");
+    Integer guestSelectedCategory = (Integer) request.getAttribute("selectedCategoryID");
+
+    if (guestKeyword == null) {
+        guestKeyword = "";
+    }
+%>
+
+<nav class="market-navbar" aria-label="Public navigation">
+    <div class="market-navbar__inner">
+        
+        <!-- Logo redirecting to the guest dashboard -->
+        <a class="market-brand" href="${pageContext.request.contextPath}/public?action=dashboard">
+            <img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="BarangBaek logo">
+        </a>
+
+        <form class="market-search" action="${pageContext.request.contextPath}/public" method="get">
+            <input type="hidden" name="action" value="dashboard">
+
+            <!-- Category dropdown -->
+            <label class="sr-only" for="guestCategory">Category</label>
+            <select id="guestCategory" name="categoryID">
+                <option value="">All categories</option>
+                    <% if (guestNavCategories != null){
+                        for (category c : guestNavCategories){ %>
+                            <option value="<%= c.getCategoryID()%>"
+                            <%= guestSelectedCategory != null && guestSelectedCategory == c.getCategoryID()? "selected" : ""%>>
+                            <%= c.getCategoryName()%>
+                            </option>
+                    <% }
+                        }%>
+            </select>
+
+            <!-- Search bar -->
+            <label class="sr-only" for="guestSearch">Search items</label>
+            <div class="market-search__input-wrap">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                <input id="guestSearch" type="search" name="keyword" value="<%= guestKeyword%>" placeholder="Search items">
+            </div>
+
+            <!-- Search button -->
+            <button type="submit" class="market-search__button"> Search </button>
+        </form>
+
+        <!-- Login button -->
+        <a class="market-login-button" href="${pageContext.request.contextPath}/auth?action=login">
+            <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
+            <span>Login</span>
+        </a>
+    </div>
+</nav>
+

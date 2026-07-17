@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+
+    <!-- filter -->
+    <filter>
+        <filter-name>authfilter</filter-name>
+        <filter-class>com.barangbaek.filter.authfilter</filter-class>
+    </filter>
+
+
+    <!-- filter mapping for item, cart, order, payment, parcel, profile & wishlist -->
+    <filter-mapping>
+        <filter-name>authfilter</filter-name>
+        <url-pattern>/item</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>authfilter</filter-name>
+        <url-pattern>/cart</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>authfilter</filter-name>
+        <url-pattern>/order</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>authfilter</filter-name>
+        <url-pattern>/payment</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>authfilter</filter-name>
+        <url-pattern>/parcel</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>authfilter</filter-name>
+        <url-pattern>/profile</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>authfilter</filter-name>
+        <url-pattern>/wishlist</url-pattern>
+    </filter-mapping>
+    
+    
+    <!-- listener -->
+    <listener>
+        <listener-class>
+            com.barangbaek.listener.photorestorationlistener
+        </listener-class>
+    </listener>
+
+
+    <!-- servlet -->
+    <servlet>
+        <servlet-name>publicdashboardservlet</servlet-name>
+        <servlet-class>com.barangbaek.controller.publicview.publicdashboardservlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>authservlet</servlet-name>
+        <servlet-class>com.barangbaek.controller.authservlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>itemservlet</servlet-name>
+        <servlet-class>com.barangbaek.controller.user.itemservlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cartservlet</servlet-name>
+        <servlet-class>com.barangbaek.controller.user.cartservlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>orderservlet</servlet-name>
+        <servlet-class>com.barangbaek.controller.user.orderservlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>paymentservlet</servlet-name>
+        <servlet-class>com.barangbaek.controller.user.paymentservlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>parcelservlet</servlet-name>
+        <servlet-class>com.barangbaek.controller.user.parcelservlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>profileservlet</servlet-name>
+        <servlet-class>com.barangbaek.controller.user.profileservlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>wishlistservlet</servlet-name>
+        <servlet-class>com.barangbaek.controller.user.wishlistservlet</servlet-class>
+    </servlet>
+
+
+    <!-- servlet mappings -->
+    <servlet-mapping>
+        <servlet-name>publicdashboardservlet</servlet-name>
+        <url-pattern>/public</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>authservlet</servlet-name>
+        <url-pattern>/auth</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>itemservlet</servlet-name>
+        <url-pattern>/item</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cartservlet</servlet-name>
+        <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>orderservlet</servlet-name>
+        <url-pattern>/order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>paymentservlet</servlet-name>
+        <url-pattern>/payment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>parcelservlet</servlet-name>
+        <url-pattern>/parcel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>profileservlet</servlet-name>
+        <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>wishlistservlet</servlet-name>
+        <url-pattern>/wishlist</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+
+    <!-- welcome page -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+</web-app>
