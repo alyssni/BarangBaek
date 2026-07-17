@@ -1,0 +1,18 @@
+# NetBeans personal settings
+/nbproject/private/
+
+# Generated project folders
+/build/
+/dist/
+
+# Compiled files
+*.class
+*.war
+
+# Temporary files
+*.log
+*.tmp
+
+# Windows files
+Thumbs.db
+Desktop.ini
